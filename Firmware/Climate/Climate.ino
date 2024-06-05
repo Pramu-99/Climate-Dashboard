@@ -7,7 +7,7 @@
 #define dhtType DHT11
 
 const char* ssid = "";
-const char* password = "Pramudith123";
+const char* password = "";
 const char* serverName = "http://192.168.1.7:3000/data";
 
 DHT dht(dhtPin, dhtType);
