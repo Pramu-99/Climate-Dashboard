@@ -6,7 +6,7 @@
 #define dhtPin 4
 #define dhtType DHT11
 
-const char* ssid = "Dragon Fiber";
+const char* ssid = "";
 const char* password = "Pramudith123";
 const char* serverName = "http://192.168.1.7:3000/data";
 
