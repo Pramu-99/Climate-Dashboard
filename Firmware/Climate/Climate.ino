@@ -6,7 +6,7 @@
 #define dhtPin 4
 #define dhtType DHT11
 
-const char* ssid = "";
+const char* ssid = "sds";
 const char* password = "";
 const char* serverName = "";
 
