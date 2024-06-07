@@ -11,7 +11,7 @@ function App() {
   useEffect(() => {
     const fetchData = async () => {
       // Fetch data from my server
-      const result = await axios.get('http://192.168.1.7:3000/data');
+      const result = await axios.get('http://192.168.1.7:5000/data');
       setData(result.data);
     };
 
