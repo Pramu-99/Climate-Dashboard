@@ -8,7 +8,7 @@
 
 const char* ssid = "";
 const char* password = "";
-const char* serverName = "http://192.168.1.7:5000/data";
+const char* serverName = "";
 
 DHT dht(dhtPin, dhtType);
 
