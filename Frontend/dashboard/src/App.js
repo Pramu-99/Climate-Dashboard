@@ -1,4 +1,3 @@
-// App.js
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Navbar from './components/Navbar';
@@ -10,15 +9,19 @@ function App() {
 
   useEffect(() => {
     const fetchData = async () => {
-      // Fetch data from my server
-      const result = await axios.get('http://192.168.1.7:5000/data');
-      setData(result.data);
+      try {
+        // Fetch data from the server
+        const result = await axios.get('http://192.168.1.7:5000/data');
+        setData(result.data);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
     };
-
-    fetchData(); // Call fetchData immediately
+    fetchData();
     const interval = setInterval(fetchData, 2000);
 
-    return () => clearInterval(interval); // Cleanup function to clear interval
+    //interval code
+    return () => clearInterval(interval);
   }, []);
 
   return (
