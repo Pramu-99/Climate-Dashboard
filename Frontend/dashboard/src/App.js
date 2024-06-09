@@ -1,7 +1,7 @@
 import Dashboard from './components/Dashboard';
 
 function App() {
-  return(
+  return (
     <div>
       <Dashboard></Dashboard>
     </div>
