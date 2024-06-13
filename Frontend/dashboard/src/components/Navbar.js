@@ -10,7 +10,7 @@ const Navbar = () => {
     const checkServerStatus = async () => {
       try {
         const response = await axios.get('http://localhost:5000/status');
-        console.log('Response from server:', response.data); // Log the response
+        console.log('Response from server:', response.data); //logging the response
         if (response.data === 'ok') {
           setServerStatus('Connected');
         } else {

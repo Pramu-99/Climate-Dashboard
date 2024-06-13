@@ -1,11 +1,11 @@
-// src/Dashboard.js
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Navbar from '../components/Navbar';
 import Card from '../components/Card';
 import GoogleMapComponent from '../components/GoogleMapComponent';
-import { WiThermometer, WiHumidity } from 'react-icons/wi'; // Importing weather icons
+import DailyMaxTempCard from '../components/DailyMaxTempCard';
+import { WiThermometer, WiHumidity } from 'react-icons/wi';
 
 const Dashboard = () => {
     const [data, setData] = useState({ temperature: 0, humidity: 0 });
@@ -36,7 +36,16 @@ const Dashboard = () => {
         return () => clearInterval(interval);
     }, []);
 
-    const cardHeight = '200px'; // Set the desired height
+    const cardHeight = '200px';
+
+    //function to get the day name
+    const getDayName = (index) => {
+        const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+        return days[index];
+    };
+
+    // Get today's day index
+    const todayIndex = new Date().getDay();
 
     return (
         <div style={{ backgroundColor: '#171559', minHeight: '100vh', paddingTop: '20px' }}>
@@ -44,21 +53,21 @@ const Dashboard = () => {
             <div className="container mt-4">
                 <div className="row">
                     <div className="col-md-4 mb-4">
-                        <Card 
-                            title="Temperature" 
-                            value={Math.round(data.temperature)} 
-                            unit="°C" 
+                        <Card
+                            title="Temperature"
+                            value={Math.round(data.temperature)}
+                            unit="°C"
                             height={cardHeight}
-                            icon={<WiThermometer style={{ color: 'white' }} />} // Pass the thermometer icon
+                            icon={<WiThermometer style={{ color: 'white' }} />}
                         />
                     </div>
                     <div className="col-md-4 mb-4">
-                        <Card 
-                            title="Humidity" 
-                            value={data.humidity} 
-                            unit="%" 
+                        <Card
+                            title="Humidity"
+                            value={data.humidity}
+                            unit="%"
                             height={cardHeight}
-                            icon={<WiHumidity style={{ color: 'white' }} />} // Pass the humidity icon
+                            icon={<WiHumidity style={{ color: 'white' }} />}
                         />
                     </div>
                     <div className="col-md-4 mb-4">
@@ -70,17 +79,25 @@ const Dashboard = () => {
                     </div>
                 </div>
                 <div className="row">
-                    {maxTemps.map((temp, index) => (
-                        <div key={index} className="col-md-1 mb-4">
-                            <Card 
-                                title={`Day ${index + 1}`}
-                                value={Math.round(temp.temperature)}
-                                unit="°C"
-                                height="100px"
-                                width="100px"
-                            />
-                        </div>
-                    ))}
+                    <div className="col-12">
+                        <h4 className="text-white">Weekly Maximum Temperatures</h4>
+                    </div>
+                    {/*Day Calculation Function*/}
+                    {[...Array(7)].map((_, index) => {
+                        const dayIndex = (todayIndex - 6 + index + 7) % 7;
+                        const dayName = getDayName(dayIndex);
+                        const tempData = maxTemps.find((temp) => new Date(temp.date).getDay() === dayIndex);
+                        const temperature = tempData ? tempData.temperature : 'N/A';
+
+                        return (
+                            <div key={index} className="col-md-4 mb-4 mt-4">
+                                <DailyMaxTempCard
+                                    day={dayName}
+                                    maxTemp={temperature}
+                                />
+                            </div>
+                        );
+                    })}
                 </div>
             </div>
         </div>
