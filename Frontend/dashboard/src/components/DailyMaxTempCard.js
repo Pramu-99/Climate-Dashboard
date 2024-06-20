@@ -1,3 +1,4 @@
+// src/components/DailyMaxTempCard.js
 import React, { useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 

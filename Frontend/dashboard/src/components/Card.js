@@ -1,3 +1,4 @@
+// src/components/Card.js
 import React, { useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -21,13 +22,13 @@ const Card = ({ title, value, unit, children, icon, height, width }) => {
             onMouseLeave={() => setIsHovered(false)}
         >
             <div className="card-body d-flex flex-column">
-                <h5 className="card-title text-center" style={{ color: 'white' }}>{title}</h5>
+                <h5 className="card-title text-center">{title}</h5>
                 {value !== undefined && unit !== undefined ? (
-                    <div className="text-center mb-2 d-flex align-items-center justify-content-center" style={{ color: 'white' }}>
-                        {icon && <span style={{ fontSize: "3em", marginRight: "0.2em", color: 'white' }}>{icon}</span>}
+                    <div className="text-center mb-2 d-flex align-items-center justify-content-center">
+                        {icon && <span style={{ fontSize: "3em", marginRight: "0.2em" }}>{icon}</span>}
                         <div>
-                            <span style={{ fontSize: "4.5em", color: 'white' }}>{value}</span>&nbsp;
-                            <span style={{ fontSize: "1.5em", color: 'white' }}>{unit}</span>
+                            <span style={{ fontSize: "4.5em" }}>{value}</span>&nbsp;
+                            <span style={{ fontSize: "1.5em" }}>{unit}</span>
                         </div>
                     </div>
                 ) : null}

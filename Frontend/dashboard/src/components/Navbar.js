@@ -1,3 +1,4 @@
+// src/components/Navbar.js
 import React, { useState, useEffect } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { FaGlobe } from 'react-icons/fa';
@@ -10,7 +11,6 @@ const Navbar = () => {
     const checkServerStatus = async () => {
       try {
         const response = await axios.get('http://localhost:5000/status');
-        console.log('Response from server:', response.data); //logging the response
         if (response.data === 'ok') {
           setServerStatus('Connected');
         } else {
@@ -18,7 +18,6 @@ const Navbar = () => {
         }
       } catch (error) {
         setServerStatus('Disconnected');
-        console.error('Error checking server status:', error);
       }
     };
 
