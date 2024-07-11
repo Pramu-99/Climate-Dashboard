@@ -6,6 +6,7 @@
 #define dhtPin 4
 #define dhtType DHT11
 
+//replace with your router credentials
 const char* ssid = "";
 const char* password = "";
 const char* serverName = "";
